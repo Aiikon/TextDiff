@@ -23,11 +23,13 @@ XYZ
 ```
 
 ```powershell
-Get-DiffPlexSideBySideHtml -Left $left -Right $right
+Get-DiffPlexSideBySideHtml -Left $left -Right $right | Out-File "~\Desktop\SideBySideSample.html"
+& "~\Desktop\SideBySideSample.html"
 ```
 ![Side by Side Sample](/Examples/SideBySideSample.png)
 
 ```powershell
-Get-DiffPlexInlineHtml -Left $left -Right $right
+Get-DiffPlexInlineHtml -Left $left -Right $right | Out-File "~\Desktop\InlineSample.html"
+& "~\Desktop\InlineSample.html"
 ```
 ![Inline Sample](/Examples/InlineSample.png)
