@@ -25,9 +25,9 @@ XYZ
 ```powershell
 Get-DiffPlexSideBySideHtml -Left $left -Right $right
 ```
-![Side by Side Sample](/SideBySideSample.png)
+![Side by Side Sample](/Examples/SideBySideSample.png)
 
 ```powershell
 Get-DiffPlexInlineHtml -Left $left -Right $right
 ```
-![Inline Sample](/InlineSample.png)
+![Inline Sample](/Examples/InlineSample.png)
