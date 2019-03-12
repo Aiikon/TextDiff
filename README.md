@@ -4,3 +4,6 @@ A module for using DiffPlex to generate side by side or inline HTML diffs of tex
 
 Thanks to the DiffPlex project for all the real work:
 https://github.com/mmanela/diffplex
+
+## Usage
+Refer to Sample Output.html
