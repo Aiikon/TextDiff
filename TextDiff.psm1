@@ -1,4 +1,4 @@
-Function Get-DiffPlexSideBySide
+Function Get-TextDiffSideBySide
 {
     Param
     (
@@ -7,7 +7,13 @@ Function Get-DiffPlexSideBySide
     )
     End
     {
-        Add-Type -Path $PSScriptRoot\DiffPlex.dll
+        try { [void][DiffPlex.Differ] }
+        catch
+        {
+            $fileList = [System.IO.Directory]::GetFiles("$PSScriptRoot\DiffPlex", "*.cs", "AllDirectories")
+            Add-Type -Path $fileList
+        }
+
         Add-Type -AssemblyName System.Web
 
         $leftText = $Left -join "`r`n"
@@ -46,7 +52,7 @@ Function HtmlEncode
     [System.Web.HttpUtility]::HtmlEncode($Text).Replace(' ', '&nbsp;')
 }
 
-Function Get-DiffPlexSideBySideHtml
+Function Get-TextDiffSideBySideHtml
 {
     <#
     .EXAMPLE
@@ -64,7 +70,7 @@ Function Get-DiffPlexSideBySideHtml
         XYZ
     " -replace '  +'
 
-    Get-DiffPlexSideBySideHtml $left $right | Out-File "~\Desktop\SideBySideSample.html"
+    Get-TextDiffSideBySideHtml $left $right | Out-File "~\Desktop\SideBySideSample.html"
     & "~\Desktop\SideBySideSample.html"
 
     #>
@@ -75,7 +81,7 @@ Function Get-DiffPlexSideBySideHtml
     )
     End
     {
-        $lineData = Get-DiffPlexSideBySide -Left $Left -Right $Right
+        $lineData = Get-TextDiffSideBySide -Left $Left -Right $Right
 
         $getDiffPieces = {
             param ($Pieces)
@@ -151,7 +157,7 @@ Function Get-DiffPlexSideBySideHtml
     }
 }
 
-Function Get-DiffPlexInlineHtml
+Function Get-TextDiffInlineHtml
 {
     <#
     .EXAMPLE
@@ -169,7 +175,7 @@ Function Get-DiffPlexInlineHtml
         XYZ
     " -replace '  +'
 
-    Get-DiffPlexInlineHtml $left $right | Out-File "~\Desktop\InlineSample.html"
+    Get-TextDiffInlineHtml $left $right | Out-File "~\Desktop\InlineSample.html"
     & "~\Desktop\InlineSample.html"
 
     #>
@@ -180,7 +186,7 @@ Function Get-DiffPlexInlineHtml
     )
     End
     {
-        $lineData = Get-DiffPlexSideBySide -Left $Left -Right $Right
+        $lineData = Get-TextDiffSideBySide -Left $Left -Right $Right
 
         $redLight = 255,220,224 -join ','
         $redDark = 253,184,192 -join ','

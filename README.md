@@ -1,8 +1,8 @@
-# DiffPlex
+# TextDiff
 
 A module for using DiffPlex to generate side by side or inline HTML diffs of text.
 
-Thanks to the DiffPlex project for all the real work:
+Utilizes a modified copy of the DiffPlex source code:
 https://github.com/mmanela/diffplex
 
 ## Example Usage
@@ -23,13 +23,13 @@ XYZ
 ```
 
 ```powershell
-Get-DiffPlexSideBySideHtml -Left $left -Right $right | Out-File "~\Desktop\SideBySideSample.html"
+Get-TextDiffSideBySideHtml -Left $left -Right $right | Out-File "~\Desktop\SideBySideSample.html"
 & "~\Desktop\SideBySideSample.html"
 ```
 ![Side by Side Sample](/Examples/SideBySideSample.png)
 
 ```powershell
-Get-DiffPlexInlineHtml -Left $left -Right $right | Out-File "~\Desktop\InlineSample.html"
+Get-TextDiffInlineHtml -Left $left -Right $right | Out-File "~\Desktop\InlineSample.html"
 & "~\Desktop\InlineSample.html"
 ```
 ![Inline Sample](/Examples/InlineSample.png)
