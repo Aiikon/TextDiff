@@ -49,6 +49,7 @@ Function Get-TextDiffSideBySide
 Function HtmlEncode
 {
     Param($Text)
+    if (!$Text) { return '' }
     [System.Web.HttpUtility]::HtmlEncode($Text).Replace(' ', '&nbsp;')
 }
 
